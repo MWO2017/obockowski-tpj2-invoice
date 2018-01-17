@@ -104,6 +104,7 @@ public class InvoiceTest {
 		invoice.addProduct(createProductWithCustomTax());
 
 		// then
+		System.out.println(invoice.getTotal());
 		assertBigDecimalsAreEquals(_272_2, invoice.getTotal());
 	}
 
@@ -133,6 +134,7 @@ public class InvoiceTest {
 		invoice.addProduct(createProductWithCustomTax(), 4); // Total: 43.2
 
 		// then
+		System.out.println("testInvoiceHasPropoerTotalWithQuantityMoreThanOne"+invoice.getTotal());
 		assertBigDecimalsAreEquals(_765_99, invoice.getTotal());
 	}
 

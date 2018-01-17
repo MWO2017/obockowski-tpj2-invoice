@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class ProductTest {
 
+	// simply "text fixture"
 	private static final String _1_00 = "-1.00";
 	private static final String _108_0 = "108.0";
 	private static final String _0_08 = "0.08";
