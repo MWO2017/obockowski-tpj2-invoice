@@ -8,16 +8,14 @@ import java.util.Set;
 public class Invoice {
 
 	HashMap<Product, Integer> products;
-	BigDecimal tax;
+	
 	String number;
 
 	private Invoice() {
 		this.products = new HashMap<Product, Integer>();
-		this.tax=BigDecimal.ZERO;
 	}
 
 	public void addProduct(Product product) {
-		this.tax=product.getTaxPercent();
 		int counts = products.containsKey(product) ? products.get(product) + 1 : 1;
 		products.put(product, counts);
 	}
@@ -26,7 +24,6 @@ public class Invoice {
 		if (quantity <= 0) {
 			throw new IllegalArgumentException();
 		}
-		this.tax=product.getTaxPercent();
 		int counts = products.containsKey(product) ? products.get(product) + quantity : quantity;
 		products.put(product, counts);
 
@@ -48,7 +45,13 @@ public class Invoice {
 	}
 
 	public BigDecimal getTax() {
-		return this.tax;
+		BigDecimal tax=new BigDecimal("0.00");
+		Set<Product> s = products.keySet();
+		for (Product p: s) {
+			BigDecimal temp=p.getPrice().multiply(p.getTaxPercent());
+			tax=tax.add(temp);
+		}
+		return tax;
 	}
 
 	public BigDecimal getTotal() {

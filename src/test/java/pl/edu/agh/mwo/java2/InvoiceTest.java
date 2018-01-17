@@ -90,6 +90,7 @@ public class InvoiceTest {
 		invoice.addProduct(createProductWithCustomTax(), 1);
 
 		// then
+		System.out.println("podatek: "+invoice.getTax());
 		assertBigDecimalsAreEquals(_12_3, invoice.getTax());
 	}
 
